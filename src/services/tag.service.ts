@@ -1,4 +1,3 @@
-import { Injectable, Inject } from "../utility/service-gen";
 import { Service } from "../services/service";
 import { Tag } from "../model/tag";
 import { Section } from "../model/section";

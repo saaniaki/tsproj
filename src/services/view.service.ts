@@ -13,14 +13,14 @@ export class ViewService extends Service {
     constructor(t: string) {
         super(t);
         this._tagsSection = new Section("Here are the tags", "tag-area", new TagForm());
-        // this._cardsSection = new Section("Here are the cards", "card-area");
+        this._cardsSection = new Section("Here are the cards", "card-area");
         // this._latestSection = new Section("Latest Title", "latest-area");
     }
 
     render(element: HTMLElement) {
         this._main = element;
         element.appendChild(this.tagsSection.dom);
-        // element.appendChild(this.cardsSection.dom);
+        element.appendChild(this.cardsSection.dom);
         // element.appendChild(this.latestSection.dom);
     }
 
@@ -28,9 +28,9 @@ export class ViewService extends Service {
         return this._tagsSection;
     }
 
-    // get cardsSection(): Section {
-    //     return this._cardsSection;
-    // }
+    get cardsSection(): Section {
+        return this._cardsSection;
+    }
 
     // get latestSection(): Section {
     //     return this._latestSection;
