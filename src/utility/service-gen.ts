@@ -1,7 +1,7 @@
 import { Service } from "../services/service";
 
 interface IServiceName {
-    new(name: string, ...args: any): Service;
+    new(name: string, ...args: any[]): Service;
 }
 
 let injectables: Service[] = [];
@@ -13,7 +13,7 @@ export function Injectable(target: Function) {
     if (fService === null || fService === undefined)   
         injectables.push(new target.prototype.constructor(className));
     else
-        throw ("Service Type Already Has Been Instantiated.");
+        throw("Service Type Already Has Been Instantiated.");
 }
 
 export function Inject(service: IServiceName) {
