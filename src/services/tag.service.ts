@@ -8,7 +8,7 @@ export class TagService extends Service {
 
     tags: Tag[] = [];
     section: Section;
-
+    
     constructor(t: string) {
         super(t);
         this.tags = [];
