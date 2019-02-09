@@ -1,0 +1,28 @@
+git log :
+   Logs every commit to the branch
+
+git remote -v :
+    Lists all the remote directories
+
+git fetch [remote name]:
+    Fetches the newest commits from branch.
+
+
+ssh-keygen -t rsa -b 4096 -C "useremail@email.com"
+
+git clone git@github.com:[username/repo]
+
+git status:
+    What is not Staged
+
+git add [file]:
+    Stages the changed file
+
+git commit --ammend:
+    Updates the current commit.
+
+git push origin master --force
+    forces a commit to go up to repo ignoring all errors.
+
+git log --oneline [branch]..[upstream]
+
