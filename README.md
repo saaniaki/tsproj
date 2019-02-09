@@ -10,3 +10,5 @@ The app should have a line on top of the page which shows the title of the lates
 
 > To guide the user, tags should be added via a select input and the list should ALWAYS be the most updated one.
 > Removing a tag from the tag list, should also remove it from all cards having it.
+
+by Apprism
