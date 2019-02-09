@@ -1,0 +1,10 @@
+git log :
+   Logs every commit to the branch
+git remote -v :
+    Lists all the remote directories
+git fetch [remote name]:
+    Fetches the newest commits from branch.
+
+
+ssh-keygen -t rsa -b 4096 -C "useremail@email.com"
+giy clone git@github.com:[username/repo]

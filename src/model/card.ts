@@ -2,7 +2,7 @@ import { Inject } from "../utility/service-gen";
 import { Insertable } from "./insertable";
 import { CardService} from "../services/card.service";
 
-export class Tag extends Insertable {
+export class Card extends Insertable {
 
     @Inject(CardService) cardService: CardService;
 
@@ -11,7 +11,7 @@ export class Tag extends Insertable {
 
     constructor(t: string, b: string) {
         super(t, b);
-        this.cardService.addTag(this);
+        this.cardService.addCard(this);
     }
 
     protected onInit(...args: any[]): void {
@@ -23,8 +23,11 @@ export class Tag extends Insertable {
         const container = document.createElement('div');
         container.className = 'cards';
 
-        const displayName = document.createElement('span');
-        displayName.textContent = this.name;
+        const displayTopic = document.createElement('span');
+        displayTopic.textContent = this.topic;
+        
+        const displayBody = document.createElement('span');
+        displayBody.textContent = this.body;
 
         const removeButton = document.createElement('button');
         removeButton.textContent = 'Delete';
@@ -32,10 +35,11 @@ export class Tag extends Insertable {
 
         removeButton.onclick = () => {
             container.parentNode.removeChild(container);
-            this.cardService.removeTag(this);
+            this.cardService.removeCard(this);
         };
 
-        container.appendChild(displayName);
+        container.appendChild(displayTopic);
+        container.appendChild(displayBody);
         container.appendChild(removeButton);
 
         this._dom = container;

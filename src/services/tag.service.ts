@@ -1,7 +1,7 @@
 import { Service } from "../services/service";
 import { Tag } from "../model/tag";
 import { Section } from "../model/section";
-import { ViewService } from "./view.service";
+import { Injectable } from "../utility/service-gen";
 
 @Injectable
 export class TagService extends Service {
