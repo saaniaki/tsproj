@@ -2,6 +2,7 @@ import { Service } from "./service";
 import { Section } from "../model/section";
 import { Injectable } from "../utility/service-gen";
 import { CardForm } from "../model/card-form";
+import { TagForm } from "../model/tag-form";
 
 @Injectable
 export class ViewService extends Service {
@@ -12,6 +13,7 @@ export class ViewService extends Service {
 
     constructor(t: string) {
         super(t);
+        this._tagsSection = new Section("Here are the tags", "tag-area", new TagForm());
         this._cardsSection = new Section("Here are the cards", "card-area", new CardForm());
     }
 
