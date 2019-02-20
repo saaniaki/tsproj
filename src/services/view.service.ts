@@ -9,7 +9,6 @@ export class ViewService extends Service {
     private _main: HTMLElement;
     private _tagsSection: Section;
     private _cardsSection: Section;
-    private _latestSection: Section;
 
     constructor(t: string) {
         super(t);

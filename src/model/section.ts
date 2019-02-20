@@ -30,6 +30,7 @@ export class Section {
     }
 
     get insertArea(): HTMLElement {
+        
         return this._insertionArea;
     }
 
