@@ -8,14 +8,14 @@ import { Inject } from "../utility/service-gen";
 export class CardForm extends AddFrom {
 
     @Inject(TagService) tagService : TagService;
-    _title: HTMLInputElement;
-    _body: HTMLInputElement;
+    private _title: HTMLInputElement;
+    private _body: HTMLInputElement;
 
     private _dropDown: HTMLSelectElement;
 
     protected onInit(...args: any[]): void {
         this._dropDown = document.createElement('select');
-        this.tagService.register(() => {
+        this.tagService.addAgent(() => {
             this._dropDown.options.length = 0;
             for (const t of this.tagService.tags) {
                 let option: HTMLOptionElement = document.createElement('option');

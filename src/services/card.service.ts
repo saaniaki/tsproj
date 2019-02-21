@@ -6,11 +6,12 @@ import {Section} from "../model/section";
 @Injectable
 export class CardService extends Service {
 
-    cards: Card[] = [];
+    cards: Card[];
     section: Section;
 
     constructor(t: string){
         super(t);
+        this.cards = [];
     }
 
     public addCard(c: Card){

@@ -44,7 +44,7 @@ export class Card extends Insertable {
         this._tagSection.className = "tagsection";
 
         //Function for adding new tags to card's drop down menu
-        this.tagService.register(() => {
+        this.tagService.addAgent(() => {
             this._dropDown.options.length = 0;
             for (const t of this.tagService.tags) {
                 let option: HTMLOptionElement = document.createElement('option');

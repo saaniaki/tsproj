@@ -1,34 +1,36 @@
 import { Service } from "../services/service";
 import { Tag } from "../model/tag";
-import { Section } from "../model/section";
 import { Injectable } from "../utility/service-gen";
 
 @Injectable
 export class TagService extends Service {
 
-    tags: Tag[];
-    resources: Function[];
-    section: Section;
+    private _tags: Tag[];
+    private updateAgents: Function[];
     
     constructor(t: string) {
         super(t);
-        this.tags = [];
-        this.resources = [];
+        this._tags = [];
+        this.updateAgents = [];
     }
 
     addTag(tag: Tag) {
-        this.tags.push(tag);
+        this._tags.push(tag);
         this.update();
     }
 
     removeTag(tag: Tag) {
-        const index = this.tags.indexOf(tag);
+        const index = this._tags.indexOf(tag);
         if (index > -1){
-            this.tags.splice(index, 1);
+            this._tags.splice(index, 1);
             this.update();
         }
         else
             throw ("Tag Not Found.");
+    }
+
+    get tags(): Tag[]{
+        return this._tags;
     }
 
     public valueSelect(name: string): Tag{
@@ -40,14 +42,14 @@ export class TagService extends Service {
         return null;
     }
 
-    public register(e: Function){
-        this.resources.push(e);
+    public addAgent(e: Function){
+        this.updateAgents.push(e);
     }
 
     public update(){
-        this.resources.forEach((e) => {
+        for (const e of this.updateAgents){
             e();
-        });
+        }
     };
 
 }       
