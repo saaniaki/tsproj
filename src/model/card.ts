@@ -52,7 +52,6 @@ export class Card extends Insertable {
                 this._dropDown.add(option);
             }
         });
-        console.log(args);
         this.setTag(args[0][2]);
         
         //Make sure the tags are updated to latest
@@ -118,7 +117,6 @@ export class Card extends Insertable {
 
     private setTag(t: string) {
         var x: Tag = this.tagService.valueSelect(t);
-        console.log(x);
         if (this.tags.indexOf(x) < 0){
             this.tags.push(x);
             this.publishTag(x);
@@ -133,10 +131,16 @@ export class Card extends Insertable {
     private publishTag(t: Tag){
         const tag_item = document.createElement('span');
         tag_item.className = 'tag-item';
-        tag_item.onclick =() => this.removeTag(t, tag_item);
+        tag_item.onclick = () => this.removeTag(t, tag_item);
         tag_item.textContent = t.name;
         console.log(t);
         this._tagSection.appendChild(tag_item);
+        this.tagService.addAgent(() => {
+            console.log("I AM CALLED");
+            if (!this.findTag(t)){
+                this.removeTag(t, tag_item);
+            }
+        });
     }
 
     /**
@@ -152,5 +156,20 @@ export class Card extends Insertable {
         }
         else
             throw ("Tag Not Found.");
+    }
+
+    /**
+     * Checks if tag exists in Tag Service or no
+     * @param t 
+     */
+    private findTag(t: Tag): Boolean{
+        let state: Boolean = false;
+        for(const e of this.tagService.tags){
+            if (e == t){
+                state = true;
+                break;
+            }
+        }
+        return state;
     }
 }

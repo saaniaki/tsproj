@@ -47,6 +47,7 @@ export class TagService extends Service {
     }
 
     public update(){
+        console.log("Runing agents");
         for (const e of this.updateAgents){
             e();
         }
