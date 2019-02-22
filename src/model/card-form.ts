@@ -54,6 +54,10 @@ export class CardForm extends AddFrom {
         this._dom = container;
     }
 
+    public resetDom(){
+        this.domCreator();
+    }
+
     get formItem(): Insertable {
         return new Card(this._title.value, this._body.value, this._dropDown.options[this._dropDown.selectedIndex].value);
     }

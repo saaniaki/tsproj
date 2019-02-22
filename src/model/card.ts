@@ -103,6 +103,9 @@ export class Card extends Insertable {
         this._dom = container;
     }
 
+    public resetDom(){
+    }
+
     /**  
      * By calling this, it will associate a specific tag with
      * this object.
@@ -136,10 +139,9 @@ export class Card extends Insertable {
         console.log(t);
         this._tagSection.appendChild(tag_item);
         this.tagService.addAgent(() => {
-            console.log("I AM CALLED");
             if (!this.findTag(t)){
                 this.removeTag(t, tag_item);
-            }
+            }   
         });
     }
 

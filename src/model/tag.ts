@@ -39,6 +39,10 @@ export class Tag extends Insertable {
         this._dom = container;
     }
 
+    public resetDom(){
+        this.resetDom();
+    }
+
     get name(): string{
         return this._name;
     }
