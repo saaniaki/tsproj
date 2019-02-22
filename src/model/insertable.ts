@@ -13,4 +13,6 @@ export abstract class Insertable {
     get dom(): HTMLElement {
         return this._dom;
     }
+
+    public abstract resetDom(): void;
 }

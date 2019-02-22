@@ -28,6 +28,9 @@ export class TagForm extends AddFrom {
         this._dom = container;
     }
 
+    public resetDom(){
+    }
+
     get formItem(): Insertable {
         return new Tag(this._input.value);
     }

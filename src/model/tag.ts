@@ -6,7 +6,7 @@ export class Tag extends Insertable {
 
     @Inject(TagService) tagService: TagService;
 
-    private name: string;
+    private _name: string;
 
     constructor(n: string) {
         super(n);
@@ -14,7 +14,7 @@ export class Tag extends Insertable {
     }
 
     protected onInit(...args: any[]): void {
-        this.name = args[0];
+        this._name = args[0];
     }
 
     protected domCreator() {
@@ -37,5 +37,13 @@ export class Tag extends Insertable {
         container.appendChild(removeButton);
 
         this._dom = container;
+    }
+
+    public resetDom(){
+        this.resetDom();
+    }
+
+    get name(): string{
+        return this._name;
     }
 }

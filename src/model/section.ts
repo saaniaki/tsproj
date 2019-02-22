@@ -24,12 +24,15 @@ export class Section {
             this._insertionArea.appendChild(addFrom.dom);
             addFrom.addButton.onclick = () => {
                 this.insert(addFrom.formItem);
+                addFrom.dom.remove();
+                addFrom.resetDom();
             }
         };
         this._dom.appendChild(addButton);
     }
 
     get insertArea(): HTMLElement {
+        
         return this._insertionArea;
     }
 
