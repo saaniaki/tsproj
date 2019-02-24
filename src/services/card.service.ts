@@ -1,23 +1,21 @@
-import { Service } from "../services/service";
-import { Injectable, Inject } from "../utility/service-gen";
 import { Card } from "../model/card";
-import {Section} from "../model/section";
+import { Service } from "../di/ServiceDecorator";
+import { ViewService } from "./view.service";
 
-@Injectable
-export class CardService extends Service {
+@Service()
+export class CardService {
 
-    cards: Card[] = [];
-    section: Section;
+    cards: Card[];
 
-    constructor(t: string){
-        super(t);
+    constructor(private viewService: ViewService) {
+        this.cards = [];
     }
 
-    public addCard(c: Card){
+    public addCard(c: Card) {
         this.cards.push(c);
     }
 
-    public removeCard(c: Card){
+    public removeCard(c: Card) {
         const index = this.cards.indexOf(c);
         if (index > -1)
             this.cards.splice(index, 1);

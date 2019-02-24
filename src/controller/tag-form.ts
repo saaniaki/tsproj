@@ -1,12 +1,17 @@
 import { AddFrom } from "./add-from";
-import { Insertable } from "./insertable";
-import { Tag } from "./tag";
+import { Tag } from "../model/tag";
+import { Service } from "../di/ServiceDecorator";
 
-export class CardForm extends AddFrom {
+@Service()
+export class TagForm extends AddFrom<Tag> {
 
-    _input: HTMLInputElement;
+    private _input: HTMLInputElement;
 
-    protected domCreator(): void {
+    constructor() {
+        super();
+    }
+
+    protected generateDom(): void {
         const container = document.createElement('div');
         container.className = 'tag';
 
@@ -28,7 +33,10 @@ export class CardForm extends AddFrom {
         this._dom = container;
     }
 
-    get formItem(): Insertable {
+    public resetDom() {
+    }
+
+    get formModel(): Tag {
         return new Tag(this._input.value);
     }
 

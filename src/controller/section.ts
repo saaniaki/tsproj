@@ -1,11 +1,10 @@
-import { Insertable } from "./insertable";
 import { AddFrom } from "./add-from";
 
-export class Section {
+export abstract class Section<T> {
     private _dom: HTMLElement;
     private _insertionArea: HTMLElement;
 
-    constructor(title: string, cls: string, addFrom: AddFrom) {
+    constructor(title: string, cls: string, addFrom: AddFrom<T>) {
         this._dom = document.createElement('div');
         this._dom.className = 'container';
 
@@ -23,13 +22,18 @@ export class Section {
         addButton.onclick = () => {
             this._insertionArea.appendChild(addFrom.dom);
             addFrom.addButton.onclick = () => {
-                this.insert(addFrom.formItem);
+                this.addItem(addFrom.formModel);
+                addFrom.dom.remove();
+                addFrom.resetDom();
             }
         };
         this._dom.appendChild(addButton);
     }
 
+    abstract addItem(item: T): void;
+
     get insertArea(): HTMLElement {
+        
         return this._insertionArea;
     }
 
@@ -37,7 +41,7 @@ export class Section {
         return this._dom;
     }
 
-    insert(element: Insertable) {
-        this._insertionArea.appendChild(element.dom);
+    insertHTMLElement(element: HTMLElement) {
+        this._insertionArea.appendChild(element);
     }
 }

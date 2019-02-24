@@ -1,31 +1,19 @@
-import { Service } from "./service";
-import { Section } from "../model/section";
-import { Injectable } from "../utility/service-gen";
-import { CardForm } from "../model/card-form";
+import { Section } from "../controller/section";
+import { Service } from "../di/ServiceDecorator";
 
-@Injectable
-export class ViewService extends Service {
+@Service()
+export class ViewService {
     private _main: HTMLElement;
-    private _tagsSection: Section;
-    private _cardsSection: Section;
-    private _latestSection: Section;
 
-    constructor(t: string) {
-        super(t);
-        this._cardsSection = new Section("Here are the cards", "card-area", new CardForm());
+    constructor() {
+        this._main = document.body;
     }
 
-    render(element: HTMLElement) {
-        this._main = element;
-        element.appendChild(this.tagsSection.dom);
-        element.appendChild(this.cardsSection.dom);
+    appendView(section: Section<any>) {
+        this._main.appendChild(section.dom);
     }
 
-    get tagsSection(): Section {
-        return this._tagsSection;
-    }
-
-    get cardsSection(): Section {
-        return this._cardsSection;
+    get main(): HTMLElement {
+        return this._main;
     }
 }

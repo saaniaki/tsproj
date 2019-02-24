@@ -1,21 +1,20 @@
-import { Inject } from "./utility/service-gen";
-import { ViewService } from "./services/view.service";
+import { Injector } from "./di/Injector";
+import { TagSection } from "./controller/tag-section";
+import { CardSection } from "./controller/card-section";
 import { Tag } from "./model/tag";
+import { Service } from "./di/ServiceDecorator";
 
+@Service()
 class App {
-    @Inject(ViewService)
-        viewService: ViewService;
-    
-    constructor(target: HTMLElement) {
-        this.viewService.render(target);
+    constructor(private tagSection: TagSection,
+        private cardSection: CardSection) {
+            this.addDefaultTags();
+    }
+
+    addDefaultTags() {
+        this.tagSection.addItem(new Tag("t1"));
+        this.tagSection.addItem(new Tag("t2"));
+        this.tagSection.addItem(new Tag("t3"));
+        this.tagSection.addItem(new Tag("t4"));
     }
 }
-
-(function () {
-    const app = new App(document.body);
-    //---------------------
-    const t1 = new Tag("t1");
-    const t2 = new Tag("t2");
-    const t3 = new Tag("t3");
-    const t4 = new Tag("t4");
-})()
